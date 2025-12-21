@@ -1,27 +1,103 @@
 # Dictonary that will hold all of the contacts
 user_contacts = {
-    'Jessie' : {'Phone Number': '999-999-9999', 'email': 'jessie@emailprovider.com'}
+    'Jessie Castellanos' : {'Phone Number': '999-999-9999', 'email': 'jessie@emailprovider.com'}
 }
 
 # TODO: Create an add function. Need to confirm that the information is not the exact same.
+def add():
+    print('Please give me the full name of the contact.')
+    contact_name = input('> ')
+    print('Please give me the contacts phone number.')
+    contact_number = input ('> ')
+    print('Please give me the contacts, email.')
+    contact_email = input('> ')
+    if contact_name:
+        if contact_number:
+            if contact_email:
+                user_contacts[contact_name] = {'Phone Number': contact_number, 'email': contact_email}
+    return user_contacts[contact_name]
 
 # TODO: Create a view function. What should the funcion recieve? What shout it return? Wha should it not do?
+def view():
+    for contact in user_contacts:
+        print(contact, user_contacts[contact])
+    return None
 
 # TODO: Create a search function. What should the funcion recieve? What shout it return? Wha should it not do?
+def search():
+    print('Type the name of the contact you\'re looking for.')
+    contact_name = input('> ')
+    if contact_name in user_contacts:
+        print(contact_name, user_contacts[contact_name])
+    else:
+        print('User could not be found.')
+    return None
 
 # TODO: Create an edit function. What should the funcion recieve? What shout it return? Wha should it not do?
+def edit():
+    print('Type the contact that you would like to edit.')
+    edit_name = input('> ')
+    print('Do you want to update their phone number? yes or no')
+    edit_number = input('> ')
+    if edit_number == 'yes':
+        print('please give me the updated phone number.')
+        new_number = input('> ')
+        user_contacts[edit_name]['Phone Number'] = new_number
+    print('Do you want to update their email address? yes or no')
+    edit_email = input('> ')
+    if edit_email == 'yes':
+        new_email = input('> ')
+        user_contacts[edit_name]['email'] = new_email 
+    print(edit_name, user_contacts[edit_name])
+    return None
+
 
 # TODO: Create a delete function. What should the funcion recieve? What shout it return? Wha should it not do?
+def delete():
+    print('Type the name of the contact you would like to delete.')
+    delete_name = input('> ')
+    if delete_name in user_contacts:
+        del user_contacts[delete_name]
+        print(f"{delete_name} has been removed from the database.")
+    return None
+
 
 # TODO: Create the CLI menu. It needs to be able to loop back to the menu. Can't crash on bad input. The user can exit cleanly.
+def menu():
+    options = ['1', '2', '3', '4', '5', '6']
+    while True:
+        print('What would you like to do? Choose the corresponsing number.')
+        print('1. Add a contact', '2. View all contacts', '3. Search contacts', '4. Edit contact', '5. Delete contact', '6. Exit', sep='\n')
+        print()
+        user_input = input("> ")
+
+        if user_input == '6':
+            sys.exit()
+        elif user_input == '5':
+            delete()
+            break
+        elif user_input == '4':
+            edit()
+            break
+        elif user_input == '3':
+            search()
+            break
+        elif user_input == '2':
+            view()
+            break
+        elif user_input == '1':
+            print(add())
+            break
+        elif user_input not in options:
+            print('That was not a valid option, please try again.')
+
 
 """
-1. Show menu
-2. Add a contact
-3. View all contacts
-4. Search contacts
-5. Edit contact
-6. Delete contact
+1. Add a contact
+2. View all contacts
+3. Search contacts
+4. Edit contact
+5. Delete contact
 
 After each step:
 
@@ -34,4 +110,8 @@ After each step:
 # TODO: Add File Peristence.
 
 # TODO: Refactor the code.
+
+if __name__ == '__main__':
+    import sys
+    menu()
 
