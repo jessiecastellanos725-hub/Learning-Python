@@ -1,0 +1,208 @@
+🟡 Phase 2: Data & Design
+
+Goal: Learn to organize code and think in structures.
+
+Project 3: Contact Management System
+
+Must include
+
+Add/search/edit/delete contacts
+
+Save/load from file
+
+Clean menu system
+
+Upgrade challenge
+
+Use classes
+
+Import/export CSV
+
+
+----------------------------------------------------------------------------------------------------------
+
+Great choice. I’ll give you **guiding steps only** — no code, no solutions — so *you* do the thinking.
+Treat this like a real software task.
+
+---
+
+# Project 3: Contact Management System
+
+**Goal:** Design and build it yourself.
+
+---
+
+## 1️⃣ Define the Core Requirements
+
+Before coding, answer *on paper or in comments*:
+
+* What is a **contact**?
+
+  * What fields does it have? (name, phone, email, etc.)
+* What actions must the user be able to do?
+
+  * Add?
+  * View?
+  * Search?
+  * Edit?
+  * Delete?
+
+⚠️ Rule: If you can’t describe it clearly, don’t code yet.
+
+---
+
+## 2️⃣ Decide How Data Will Be Stored (In Memory)
+
+Think about:
+
+* One contact vs many contacts
+* Fast searching
+* Easy editing
+
+Questions to ask yourself:
+
+* Should contacts be in a list or dictionary?
+* What uniquely identifies a contact?
+* How will you avoid duplicates?
+
+Write your **data structure choice** down.
+
+---
+
+## 3️⃣ Sketch the User Interface (CLI)
+
+Design the menu *before* writing code.
+
+Example thinking (not an answer):
+
+* How does the user see options?
+* How do they select actions?
+* How does the program loop back to the menu?
+
+Make sure:
+
+* The program doesn’t crash on bad input
+* The user can exit cleanly
+
+---
+
+## 4️⃣ Break Features into Functions
+
+For each action:
+
+* What should the function receive?
+* What should it return?
+* What should it NOT do?
+
+Think about:
+
+* Single responsibility
+* Reusable logic
+
+Write function *names only* first.
+
+---
+
+## 5️⃣ Implement Basic Features One by One
+
+Order matters. Choose wisely.
+
+Suggested thinking order:
+
+1. Show menu
+2. Add a contact
+3. View all contacts
+4. Search contacts
+5. Edit contact
+6. Delete contact
+
+After each step:
+
+* Run the program
+* Try to break it intentionally
+
+---
+
+## 6️⃣ Add Input Validation & Error Handling
+
+Ask yourself:
+
+* What if the user presses Enter?
+* What if they type letters instead of numbers?
+* What if they search for something that doesn’t exist?
+
+Your program should:
+
+* Never crash
+* Always explain what went wrong
+
+---
+
+## 7️⃣ Add File Persistence
+
+Now think beyond memory.
+
+Questions:
+
+* When does data get saved?
+* What happens when the program starts?
+* What format should the file be in?
+
+Do not redesign everything — **adapt your existing structure**.
+
+---
+
+## 8️⃣ Refactor the Code
+
+Look at your program and ask:
+
+* Are functions too long?
+* Is logic duplicated?
+* Are names clear?
+
+You should:
+
+* Move repeated logic into functions
+* Rename confusing variables
+* Simplify conditionals
+
+---
+
+## 9️⃣ Upgrade: Introduce Classes
+
+Only after everything works.
+
+Think:
+
+* What represents a contact?
+* What represents the contact book?
+* Which functions belong to which class?
+
+Avoid rewriting everything at once.
+
+---
+
+## 🔁 Self-Test Checklist (Very Important)
+
+You’re done only if:
+
+* You can explain every line of code
+* You can add a new feature easily
+* You can rewrite it from scratch
+* You can fix bugs without panic
+
+---
+
+## 🧠 Final Rule
+
+If you feel uncomfortable or stuck:
+
+> **That’s exactly where learning is happening.**
+
+If you want, next I can:
+
+* Ask you **design questions** one by one
+* Review your project *conceptually* (no code)
+* Give you **upgrade challenges** when you finish
+
+Just tell me where you’re stuck 👌
