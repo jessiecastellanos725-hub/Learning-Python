@@ -5,25 +5,33 @@ user_contacts = {
 
 # TODO: Create an add function. Need to confirm that the information is not the exact same.
 def add():
-    print('Please give me the full name of the contact.')
+    print('Please give me the name of the contact.')
     contact_name = input('> ')
-    print('Please give me the contacts phone number.')
+    if contact_name.replace(" ", "").isalpha() is not True:
+        print('This is not a valid name... Try again')
+        add()
+    else:
+        pass
+    print('Please give me the contacts phone number. Format should be, xxx-xxx-xxxx')
     contact_number = input ('> ')
     print('Please give me the contacts, email.')
     contact_email = input('> ')
-    if contact_name:
-        if contact_number:
-            if contact_email:
-                user_contacts[contact_name] = {'Phone Number': contact_number, 'email': contact_email}
-    return user_contacts[contact_name]
+    if contact_name not in user_contacts:
+        if contact_name:
+            if contact_number:
+                if contact_email:
+                    user_contacts[contact_name] = {'Phone Number': contact_number, 'email': contact_email}
+                    print(contact_name, user_contacts[contact_name])
+    else:
+        print('User already exists in the database.')
+    return None
 
-# TODO: Create a view function. What should the funcion recieve? What shout it return? Wha should it not do?
 def view():
     for contact in user_contacts:
         print(contact, user_contacts[contact])
     return None
 
-# TODO: Create a search function. What should the funcion recieve? What shout it return? Wha should it not do?
+
 def search():
     print('Type the name of the contact you\'re looking for.')
     contact_name = input('> ')
@@ -33,7 +41,7 @@ def search():
         print('User could not be found.')
     return None
 
-# TODO: Create an edit function. What should the funcion recieve? What shout it return? Wha should it not do?
+
 def edit():
     print('Type the contact that you would like to edit.')
     edit_name = input('> ')
@@ -52,7 +60,6 @@ def edit():
     return None
 
 
-# TODO: Create a delete function. What should the funcion recieve? What shout it return? Wha should it not do?
 def delete():
     print('Type the name of the contact you would like to delete.')
     delete_name = input('> ')
@@ -62,7 +69,6 @@ def delete():
     return None
 
 
-# TODO: Create the CLI menu. It needs to be able to loop back to the menu. Can't crash on bad input. The user can exit cleanly.
 def menu():
     options = ['1', '2', '3', '4', '5', '6']
     while True:
@@ -86,7 +92,7 @@ def menu():
             view()
             break
         elif user_input == '1':
-            print(add())
+            add()
             break
         elif user_input not in options:
             print('That was not a valid option, please try again.')
@@ -112,6 +118,6 @@ After each step:
 # TODO: Refactor the code.
 
 if __name__ == '__main__':
-    import sys
+    import sys, re
     menu()
 
