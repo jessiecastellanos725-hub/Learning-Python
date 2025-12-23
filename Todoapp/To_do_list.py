@@ -12,3 +12,26 @@ c.execute('CREATE TABLE IF NOT EXISTS tasks (task TEXT, priority_level TEXT, due
 
 # Testing Table
 logging.info(c.execute('SELECT name FROM sqlite_schema WHERE type="table"').fetchall())
+
+# Commit changes
+conn.commit()
+logging.info("Data inserted successfully")
+
+
+# TODO: Add task to database function
+def add_task():
+    pass
+
+# TODO: View pending tasks function
+def view_pending():
+    pass
+
+
+# TODO: Mark task complete function
+def mark_complete():
+    pass
+
+# TODO: Delete Task function
+def delete_task():
+    pass
+
