@@ -1,4 +1,4 @@
-import sqlite3, logging, sys, pprint
+import sqlite3, logging, sys
 from datetime import date, datetime
 
 # Configuring basic logging system.
@@ -47,35 +47,41 @@ def add_task():
 
 # TODO: View all tasks function
 def view_all_tasks():
-    try:
-        for row in (c.execute('SELECT rowid, * FROM tasks').fetchall()):
-            pprint.pprint(f'Row data: {row}', indent=4)
-    except sqlite3.Error as e:
-        print(f"Failed to retrieve records: {e}")
+    if c.execute('SELECT rowid, * FROM tasks').fetchall() == []:
+        print('No tasks currently...')
+    else:
+        try:
+            for row in (c.execute('SELECT rowid, * FROM tasks').fetchall()):
+                print(f'ID: {row[0]}, Task: {row[1]}, Priority: {row[2]}, Due Date: {row[3]}, Status: {row[4]}, Created date{row[5]}')
+        except sqlite3.Error as e:
+            print(f"Failed to retrieve records: {e}")
         
 
 # TODO: View pending tasks
 def pending_tasks():
-    try:
-        for row in (c.execute('SELECT rowid, * FROM tasks WHERE completion_status = "Not Complete" ORDER BY priority').fetchall()):
-            pprint.pprint(f'Row data: {row}', indent=4)
-    except sqlite3.Error as e:
-        print(f"Failed to retrieve pending tasks: {e}")
+    if c.execute('SELECT rowid, * FROM tasks WHERE completion_status = "Not Complete" ORDER BY priority').fetchall() == []:
+        print('There are not pending tasks...')
+    else:
+        try:
+            for row in (c.execute('SELECT rowid, * FROM tasks WHERE completion_status = "Not Complete" ORDER BY priority').fetchall()):
+                print(f'ID: {row[0]}, Task: {row[1]}, Priority: {row[2]}, Due Date: {row[3]}, Status: {row[4]}, Created date{row[5]}')
+        except sqlite3.Error as e:
+            print(f"Failed to retrieve pending tasks: {e}")
         
 
 # TODO: Mark task complete function
 def mark_complete():
     print('Please give me the task ID that you would like to mark as complete.')
     complete_input = input('> ')
-    if complete_input.isdigit():
+    if not complete_input.isdigit():
+        print('Invalid ID. Must be a number.')
+        return
+    else:
         try:
             c.execute('UPDATE tasks SET completion_status = "Complete" WHERE rowid =?', (complete_input,))
             logging.info("Marked the task as complete.")
         except sqlite3.Error as e:
             print(f"Failed to mark complete: {e}")
-            
-    else:
-        print('This rowid is invalid.')
 
 # TODO: Delete Task function
 def delete_task():
@@ -87,6 +93,8 @@ def delete_task():
             logging.info('Task deleted.')
         except sqlite3.Error as e:
             print(f"Failed to delete record: {e}")
+    elif not delete_input.isdigit():
+        print('Invalid ID. Must be a number')
             
 
 
