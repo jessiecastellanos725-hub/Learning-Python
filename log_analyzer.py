@@ -34,6 +34,6 @@ result = dict(sorted(ip_dict.items(), key = lambda x: x[1], reverse = True)[:N])
 
 print(f'Total Requests: {number_request}')
 print(f'Unique IPs: {len(ip_dict)}')
-print('Top 5 IPs:')
+print('Top 10 IPs:')
 for res in result:
         print(res + " : " + str(ip_dict[res]))
