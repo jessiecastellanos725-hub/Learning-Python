@@ -1,7 +1,68 @@
-import string
+import string, random, itertools
 
-print('Please enter the password that you would like to use')
-user_input = input('>')
+def generate_password():
+    options = ['yes', 'no']
+    print('Right-O, I will generate a password for you. I do have a few questions.')
+    while True:
+        print('How long would you like the password to be?')
+        pass_length = input('>')
+        if pass_length.lower() == '':
+            print('That is not an option.')
+        else:
+            break
+    while True:    
+        print('Would you like lower case characters? Yes or No')
+        lower_input = input('>')
+        if lower_input.lower() not in options:
+            print('That is not an option.')
+        else:
+            break
+    while True:    
+        print('Would you like upper case characters? Yes or No ')
+        upper_input = input('>')
+        if upper_input.lower() not in options:
+            print('That is not an option.')
+        else:
+            break
+    while True:
+        print('Would you like numbers? Yes or No')
+        numbers_input = input('>')
+        if numbers_input.lower() not in options:
+            print('That is not an option.')
+        else:
+            break
+    while True:
+        print('Would you like to use special characters?')
+        special_input = input('>')
+        if special_input.lower() not in options:
+            print('That is not an option.')
+        else:
+            break
+
+    #List to capture all the different characters
+    char_options = []
+    if lower_input.lower() == 'yes':
+        char_options.append(string.ascii_lowercase)
+    elif lower_input.lower() == 'no':
+        pass
+    if upper_input.lower() == 'yes':
+        char_options.append(string.ascii_uppercase)
+    elif upper_input.lower() == 'no':
+        pass
+    if numbers_input.lower() == 'yes':
+        char_options.append(string.digits)
+    elif numbers_input.lower() == 'no':
+        pass
+    if special_input.lower() == 'yes':
+        char_options.append(string.punctuation)
+    elif special_input.lower() == 'no':
+        pass
+    char_joined = list(itertools.chain.from_iterable(char_options))
+    password = ''
+    for i in range(int(pass_length)):
+        password += random.choice(char_joined)
+
+    print(password)
 
 
 # Checks the minimum length of the password.
@@ -87,4 +148,11 @@ def password_check(min_length, upper_case, lower_case, numbers, special):
         print('This password is not common!')
     
 if __name__ == '__main__':
-    password_check(min_length(user_input), upper_case(user_input), lower_case(user_input), numbers(user_input), special(user_input))
+    print('Do you want me to generate a password for you or would you like for me to check a password that you want to use. Type 1 for generate and 2 for validate')
+    choice = input('>')
+    if choice == '2':
+        print('Please enter the password that you would like to use')
+        user_input = input('>')
+        password_check(min_length(user_input), upper_case(user_input), lower_case(user_input), numbers(user_input), special(user_input))
+    elif choice == '1':
+        generate_password()
